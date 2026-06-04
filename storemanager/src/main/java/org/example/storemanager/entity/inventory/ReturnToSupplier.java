@@ -1,0 +1,43 @@
+package org.example.storemanager.entity.inventory;
+
+import jakarta.persistence.*;
+import lombok.*;
+import org.example.storemanager.entity.BaseEntity;
+import org.example.storemanager.entity.system.Branch;
+import org.example.storemanager.entity.partnerarea.Supplier;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "return_to_suppliers")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = true)
+public class ReturnToSupplier extends BaseEntity {
+
+    @Column(name = "return_code", nullable = false, unique = true, length = 50)
+    private String returnCode;
+
+    @Column(name = "return_date", nullable = false)
+    private LocalDateTime returnDate;
+
+    @Column(name = "total_amount", precision = 18, scale = 2)
+    private BigDecimal totalAmount;
+
+    @Column(nullable = false, length = 30)
+    private String status;
+
+    @Column(columnDefinition = "TEXT")
+    private String reason;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_id", nullable = false)
+    private Branch branch;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", nullable = false)
+    private Supplier supplier;
+}
