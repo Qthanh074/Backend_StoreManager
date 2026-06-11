@@ -1,5 +1,6 @@
 package org.example.storemanager.dto.response.common;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
     private boolean success;
@@ -26,13 +28,26 @@ public class ApiResponse<T> {
 
     private LocalDateTime timestamp;
 
+    private String path;
+
     private Map<String, String> errors;
+
+    // ==================== Success ====================
 
     public static <T> ApiResponse<T> ok(T data) {
         return ApiResponse.<T>builder()
                 .success(true)
                 .status(200)
                 .data(data)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    public static <T> ApiResponse<T> ok(String message) {
+        return ApiResponse.<T>builder()
+                .success(true)
+                .status(200)
+                .message(message)
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -47,22 +62,55 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    public static <T> ApiResponse<T> fail(int status, String errorCode, String message) {
+    public static <T> ApiResponse<T> created(T data) {
         return ApiResponse.<T>builder()
-                .success(false)
-                .status(status)
-                .errorCode(errorCode)
-                .message(message)
+                .success(true)
+                .status(201)
+                .message("Tạo mới thành công")
+                .data(data)
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
-    public static <T> ApiResponse<T> fail(int status, String errorCode, String message, Map<String, String> errors) {
+    public static <T> ApiResponse<T> created(String message, T data) {
+        return ApiResponse.<T>builder()
+                .success(true)
+                .status(201)
+                .message(message)
+                .data(data)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    public static <T> ApiResponse<T> noContent() {
+        return ApiResponse.<T>builder()
+                .success(true)
+                .status(204)
+                .message("Xóa thành công")
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    // ==================== Error ====================
+
+    public static <T> ApiResponse<T> fail(int status, String errorCode, String message, String path) {
         return ApiResponse.<T>builder()
                 .success(false)
                 .status(status)
                 .errorCode(errorCode)
                 .message(message)
+                .path(path)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    public static <T> ApiResponse<T> fail(int status, String errorCode, String message, String path, Map<String, String> errors) {
+        return ApiResponse.<T>builder()
+                .success(false)
+                .status(status)
+                .errorCode(errorCode)
+                .message(message)
+                .path(path)
                 .errors(errors)
                 .timestamp(LocalDateTime.now())
                 .build();
