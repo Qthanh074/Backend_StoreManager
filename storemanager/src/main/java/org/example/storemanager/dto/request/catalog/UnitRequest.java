@@ -10,4 +10,6 @@ public class UnitRequest {
     private String unitName;
 
     private String abbreviation;
+    private String description;
+    private Boolean isActive = true;
 }

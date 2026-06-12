@@ -5,7 +5,10 @@ import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 
 @Entity
-@Table(name = "product_categories")
+@Table(name = "product_categories", indexes = {
+    @Index(name = "idx_categories_category_code", columnList = "category_code", unique = true),
+    @Index(name = "idx_categories_parent_id", columnList = "parent_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +24,25 @@ public class ProductCategory extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(name = "is_active", columnDefinition = "boolean default true")
+    private Boolean isActive = true;
+
+    @Column(name = "department", length = 100)
+    private String department;
+
+    @Column(name = "manager", length = 100)
+    private String manager;
+
+    @Column(name = "inventory_gl_code", length = 50)
+    private String inventoryGlCode;
+
+    @Column(name = "cogs_gl_code", length = 50)
+    private String cogsGlCode;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tax_class", length = 20)
+    private org.example.storemanager.enums.catalog.TaxClass taxClass;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")

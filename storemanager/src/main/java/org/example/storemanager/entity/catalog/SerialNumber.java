@@ -5,7 +5,10 @@ import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 
 @Entity
-@Table(name = "serial_numbers")
+@Table(name = "serial_numbers", indexes = {
+    @Index(name = "idx_serials_serial_number", columnList = "serial_number"),
+    @Index(name = "idx_serials_product_id", columnList = "product_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +28,16 @@ public class SerialNumber extends BaseEntity {
 
     @Column(name = "import_receipt_id")
     private Long importReceiptId; // Khóa ngoại kết nối sang phân hệ Kho (ImportReceipt) sau này
+
+    @Column(name = "mac_address", length = 100)
+    private String macAddress;
+
+    @Column(name = "imei1", length = 100)
+    private String imei1;
+
+    @Column(name = "imei2", length = 100)
+    private String imei2;
+
+    @Column(name = "warranty_expiry")
+    private java.time.LocalDateTime warrantyExpiry;
 }

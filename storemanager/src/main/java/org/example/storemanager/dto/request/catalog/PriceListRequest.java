@@ -18,4 +18,11 @@ public class PriceListRequest {
     private LocalDateTime endDate;
     private Long branchId;
     private Boolean isActive = true;
+    private java.util.List<PriceListDetailRequest> details;
+
+    @Data
+    public static class PriceListDetailRequest {
+        private Long productId;
+        private java.math.BigDecimal price;
+    }
 }

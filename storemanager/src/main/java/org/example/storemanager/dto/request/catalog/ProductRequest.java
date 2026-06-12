@@ -40,4 +40,13 @@ public class ProductRequest {
     private String brand;
 
     private String mainImageUrl;
+
+    private java.util.List<ProductUnitRequest> conversionUnits;
+
+    private BigDecimal weight;
+    private BigDecimal reorderPoint;
+    private BigDecimal minStock;
+    private BigDecimal maxStock;
+    private String galleryImages;
+    private String variants;
 }

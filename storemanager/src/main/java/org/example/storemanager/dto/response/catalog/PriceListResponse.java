@@ -21,4 +21,23 @@ public class PriceListResponse {
     private Boolean isActive;
     private Long branchId;
     private String branchName;
+    private java.time.LocalDateTime deletedAt;
+    private String deletedBy;
+    private java.time.LocalDateTime createdAt;
+    private String createdBy;
+    private java.time.LocalDateTime updatedAt;
+    private String updatedBy;
+    private java.util.List<PriceListDetailResponse> details;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PriceListDetailResponse {
+        private Long id;
+        private Long productId;
+        private String productName;
+        private String productCode;
+        private java.math.BigDecimal price;
+    }
 }

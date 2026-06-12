@@ -18,4 +18,17 @@ public class ProductCategoryResponse {
     private String parentName;
     private Boolean isActive;
     private Integer productCount;
+    private java.util.List<ProductCategoryResponse> children;
+
+    private String department;
+    private String manager;
+    private String inventoryGlCode;
+    private String cogsGlCode;
+    private org.example.storemanager.enums.catalog.TaxClass taxClass;
+    private java.time.LocalDateTime deletedAt;
+    private String deletedBy;
+    private java.time.LocalDateTime createdAt;
+    private String createdBy;
+    private java.time.LocalDateTime updatedAt;
+    private String updatedBy;
 }

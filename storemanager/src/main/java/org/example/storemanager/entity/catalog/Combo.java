@@ -6,7 +6,9 @@ import org.example.storemanager.entity.BaseEntity;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "combos")
+@Table(name = "combos", indexes = {
+    @Index(name = "idx_combos_combo_code", columnList = "combo_code", unique = true)
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -38,4 +38,15 @@ public class ProductResponse {
 
     private LocalDateTime updatedAt;
     private String updatedBy;
+
+    private BigDecimal weight;
+    private BigDecimal reorderPoint;
+    private BigDecimal minStock;
+    private BigDecimal maxStock;
+    private String galleryImages;
+    private String variants;
+    private java.time.LocalDateTime deletedAt;
+    private String deletedBy;
+    private java.time.LocalDateTime createdAt;
+    private String createdBy;
 }
