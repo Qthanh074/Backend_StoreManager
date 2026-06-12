@@ -32,4 +32,19 @@ public class StockTransfer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_branch_id", nullable = false)
     private Branch toBranch;
+
+    @Column(name = "logistics_partner", length = 100)
+    private String logisticsPartner;
+
+    @Column(name = "tracking_ref", length = 100)
+    private String trackingRef;
+
+    @Column(name = "requested_by", length = 100)
+    private String requestedBy;
+
+    @Column(name = "approved_by", length = 100)
+    private String approvedBy;
+
+    @Column(name = "est_arrival_date")
+    private LocalDateTime estArrivalDate;
 }

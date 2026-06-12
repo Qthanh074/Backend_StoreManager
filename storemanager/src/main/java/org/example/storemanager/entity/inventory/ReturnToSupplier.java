@@ -5,6 +5,7 @@ import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 import org.example.storemanager.entity.system.Branch;
 import org.example.storemanager.entity.partnerarea.Supplier;
+import org.example.storemanager.enums.inventory.ReturnToSupplierStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,8 +28,9 @@ public class ReturnToSupplier extends BaseEntity {
     @Column(name = "total_amount", precision = 18, scale = 2)
     private BigDecimal totalAmount;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private String status;
+    private ReturnToSupplierStatus status;
 
     @Column(columnDefinition = "TEXT")
     private String reason;
@@ -40,4 +42,7 @@ public class ReturnToSupplier extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
+
+    @Column(name = "grn_ref_number", length = 50)
+    private String grnRefNumber;
 }

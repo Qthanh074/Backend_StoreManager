@@ -81,7 +81,9 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public LoginResponse login(LoginRequest request) {
-        User user = userRepository.findByUsername(request.getUsername())
+        String input = request.getUsername();
+        User user = userRepository.findByUsername(input)
+                .or(() -> userRepository.findByEmail(input))
                 .orElseThrow(() -> new BusinessException(ErrorCode.INVALID_CREDENTIALS,
                         "Tên đăng nhập hoặc mật khẩu không đúng"));
 
@@ -202,11 +204,13 @@ public class AuthServiceImpl implements AuthService {
         refreshToken.setCreatedBy(user.getUsername());
         refreshTokenRepository.save(refreshToken);
 
+        String roleName = user.getRole() != null ? user.getRole().getRoleName() : "USER";
+
         UserInfoResponse userInfo = UserInfoResponse.builder()
                 .id(user.getId())
                 .name(user.getFullName())
                 .email(user.getEmail())
-                .role("USER") // TODO: tích hợp Role khi có bảng user_roles
+                .role(roleName)
                 .branchId(user.getBranch() != null ? user.getBranch().getId() : null)
                 .branchName(user.getBranch() != null ? user.getBranch().toString() : null)
                 .build();

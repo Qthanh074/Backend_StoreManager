@@ -43,4 +43,8 @@ public class ImportReceipt extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchase_order_id")
+    private org.example.storemanager.entity.sales.PurchaseOrder purchaseOrder;
 }
