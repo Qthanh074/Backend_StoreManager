@@ -13,4 +13,12 @@ public class UnitResponse {
     private Long id;
     private String unitName;
     private String abbreviation;
+    private String description;
+    private Boolean isActive;
+    private java.time.LocalDateTime deletedAt;
+    private String deletedBy;
+    private java.time.LocalDateTime createdAt;
+    private String createdBy;
+    private java.time.LocalDateTime updatedAt;
+    private String updatedBy;
 }

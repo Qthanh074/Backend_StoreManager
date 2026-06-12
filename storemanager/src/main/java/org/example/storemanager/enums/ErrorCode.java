@@ -25,6 +25,11 @@ public enum ErrorCode {
     CUSTOMER_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy khách hàng"),
     SUPPLIER_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy nhà cung cấp"),
     BRANCH_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy chi nhánh"),
+    UNIT_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy đơn vị tính"),
+    COMBO_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy gói combo"),
+    PRICE_LIST_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy bảng giá"),
+    BIN_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy ô/kệ kho"),
+    LOCATION_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy vị trí sản phẩm"),
     RESOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "Không tìm thấy tài nguyên"),
 
     // === Validation ===

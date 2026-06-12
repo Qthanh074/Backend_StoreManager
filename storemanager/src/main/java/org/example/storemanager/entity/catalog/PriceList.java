@@ -7,7 +7,10 @@ import org.example.storemanager.entity.system.Branch; // Import từ phân hệ 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "price_lists")
+@Table(name = "price_lists", indexes = {
+    @Index(name = "idx_pricelists_list_code", columnList = "list_code", unique = true),
+    @Index(name = "idx_pricelists_branch_id", columnList = "branch_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

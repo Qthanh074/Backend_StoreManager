@@ -5,7 +5,9 @@ import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 
 @Entity
-@Table(name = "units")
+@Table(name = "units", indexes = {
+    @Index(name = "idx_units_unit_code", columnList = "unit_code", unique = true)
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,4 +20,10 @@ public class Unit extends BaseEntity {
 
     @Column(name = "unit_name", nullable = false, length = 50)
     private String unitName;
+
+    @Column(name = "description", length = 255)
+    private String description;
+
+    @Column(name = "is_active", columnDefinition = "boolean default true")
+    private Boolean isActive = true;
 }
