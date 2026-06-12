@@ -37,4 +37,10 @@ public class ImportReceiptDetail extends BaseEntity {
 
     @Column(name = "sub_total", precision = 18, scale = 2)
     private BigDecimal subTotal;
+
+    @Column(name = "batch_number", length = 100)
+    private String batchNumber;
+
+    @Column(name = "expiry_date")
+    private java.time.LocalDate expiryDate;
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 import org.example.storemanager.entity.system.Branch;
+import org.example.storemanager.enums.inventory.CancelIssueStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,8 +30,9 @@ public class CancelIssue extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String reason;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private String status;
+    private CancelIssueStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "branch_id", nullable = false)

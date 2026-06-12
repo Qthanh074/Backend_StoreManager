@@ -31,4 +31,25 @@ public class ProductBatch extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+    @Column(name = "initial_units", precision = 18, scale = 3)
+    private java.math.BigDecimal initialUnits;
+
+    @Column(name = "remaining_units", precision = 18, scale = 3)
+    private java.math.BigDecimal remainingUnits;
+
+    @Column(name = "unit_cost", precision = 18, scale = 2)
+    private java.math.BigDecimal unitCost;
+
+    @Column(name = "supplier_name", length = 150)
+    private String supplierName;
+
+    @Column(name = "location", length = 100)
+    private String location;
+
+    @Column(name = "quality_status", length = 50)
+    private String qualityStatus; // PASSED_QA, QUARANTINED, EXPIRED, RECALLED
+
+    @Column(name = "inspector", length = 100)
+    private String inspector;
 }
