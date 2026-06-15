@@ -5,7 +5,13 @@ import lombok.*;
 import org.example.storemanager.entity.BaseEntity;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {
+        @Index(name = "idx_users_username", columnList = "username", unique = true),
+        @Index(name = "idx_users_email", columnList = "email", unique = true),
+        @Index(name = "idx_users_phone", columnList = "phone", unique = true),
+        @Index(name = "idx_users_branch_id", columnList = "branch_id"),
+        @Index(name = "idx_users_role_id", columnList = "role_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,4 +40,9 @@ public class User extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "branch_id")
     private Branch branch;
+
+    // BỔ SUNG: Mapping với Role (1 User thuộc 1 Role)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 }
